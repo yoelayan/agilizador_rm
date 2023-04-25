@@ -52,28 +52,49 @@
         <nav class="bottom-navbar">
           <div class="container">
             <ul class="nav page-navigation">
-              <li class="nav-item">
-                <a class="nav-link" href="/dashboard">
-                  <i class="mdi mdi-compass-outline menu-icon"></i>
-                  <span class="menu-title">Panel</span>
-                </a>
-              </li>
+              <?php foreach ($permissions as $permission) : ?>
+                <?php if ($permission['group'] == 'panel') : ?>
+                  <li class="nav-item">
+                  <a class="nav-link" href="<?= $permission['route'] ?>">
+                    <i class="mdi mdi-compass-outline menu-icon"></i>
+                    <span class="menu-title"><?= $permission['page_name'] ?></span>
+                  </a>
+                </li>
+                <?php endif ?>
+              <?php endforeach ?>
+              
               <li class="nav-item">
                 <a href="#" class="nav-link">
-                  <i class="mdi mdi-monitor-dashboard menu-icon"></i>
-                  <span class="menu-title">Captaciones</span>
+                  <i class="mdi mdi-settings menu-icon"></i>
+                  <span class="menu-title">Configuración de campos</span>
                   <i class="menu-arrow"></i>
                 </a>
                 <div class="submenu">
                   <ul class="submenu-item">
+                    <?php foreach ($permissions as $permission) : ?>
+                      <?php if ($permission['group'] == 'field_configuration') : ?>
+                        <li class="nav-item">
+                          <a class="nav-link" href="<?= $permission['route'] ?>"><?= $permission['page_name'] ?></a>
+                        </li>
+                      <?php endif ?>
+                    <?php endforeach ?>
                     <li class="nav-item">
-                      <a class="nav-link" href="/statements">Declaraciones</a>
+                      <a class="nav-link" href="/settings/area_type">Campo tipo de área</a>
                     </li>
                     <li class="nav-item">
-                      <a class="nav-link" href="/acea_configuration">Configuracion de A.C.E.</a>
+                      <a class="nav-link" href="/settings/housing_type">Campo tipo de vivienda</a>
                     </li>
                     <li class="nav-item">
-                      <a class="nav-link" href="pages/ui-features/dropdowns.html">Configuracion de campos</a>
+                      <a class="nav-link" href="/settings/market_type">Campo tipo de mercado</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="/settings/business_model">Campo modelo de negocio</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="/settings/state">Campo estados</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="/settings/municipality">Campo municipios</a>
                     </li>
                   </ul>
                 </div>
@@ -90,13 +111,19 @@
                       <a class="nav-link" href="/users/super_users">Superusuarios</a>
                     </li>
                     <li class="nav-item">
-                      <a class="nav-link" href="/users/administrative">Administrativos</a>
+                      <a class="nav-link" href="/users/administratives">Administrativos</a>
                     </li>
                     <li class="nav-item">
                       <a class="nav-link" href="/users/agents">Agentes de ventas</a>
                     </li>
                   </ul>
                 </div>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/statements">
+                  <i class="mdi mdi-monitor-dashboard menu-icon"></i>
+                  <span class="menu-title">Declaraciones</span>
+                </a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="/properties/my_properties">
@@ -112,8 +139,8 @@
               </li>
               <li class="nav-item">
                 <div class="nav-link d-flex">
-                    <button style="background: #161616;" class="btn btn-sm border-info text-white"> 
-                      <i class="fa fa-cogs pr-1" style="font-size:15px;" aria-hidden="true"></i> Soporte técnico
+                    <button style="background: #161616;" class="btn btn-sm border-info text-white">
+                      <i class="mdi mdi-headset menu-icon" style="font-size:15px;" aria-hidden="true"></i> Soporte técnico
                     </button>
                 </div>
               </li>

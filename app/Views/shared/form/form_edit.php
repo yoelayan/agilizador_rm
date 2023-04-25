@@ -1,5 +1,18 @@
+<!-- content-wrapper start -->
+<div class="content-wrapper pb-0">
 
+<?php if ($generate_form['controls']['is_controls']): ?>
+    <div class="page-header flex-wrap">
+        <div class="d-flex flex-wrap mt-md-2 mt-lg-0">
+            <a href="<?= $generate_form['controls']['url_previous_page'] ?>" class="btn btn-dark btn-sm d-flex align-items-center">
+                <i class="fa fa-arrow-circle-o-left pr-2" aria-hidden="true"></i> Página anterior
+            </a>
+        </div>
+        <div class="d-flex flex-wrap mt-md-2 mt-lg-0"></div>
+    </div>
+<?php endif; ?>
 
+<div class="shadow-sm mb-3 bg-white rounded px-3 pt-2 pb-1">
 <h4 class="pt-4 pb-4">
     <?= $generate_form['title'] ?>
 </h4>
@@ -37,3 +50,6 @@
         <button type="submit" class="btn btn-success w-100">Guardar</button>
     </div>
 </form>
+</div>
+</div>
+<!-- content-wrapper ends -->

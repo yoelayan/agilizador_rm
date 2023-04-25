@@ -1,5 +1,5 @@
 <!-- partial:partials/_footer.html -->
-<footer class="footer container-fluid bg-grey pt-5">
+<footer class="footer container-fluid bg-grey pt-5 mt-5">
 <div class="container">
 <div class="row">
     <div class="col-md-7">
@@ -114,6 +114,17 @@
     <script type="text/javascript" src="/assets/js/slider_ajax/jquery.min.js"></script>
     <script type="text/javascript" src="/assets/js/datatable/jquery.dataTables.min.js"></script>
     <script type="text/javascript" src="/assets/js/datatable/config.dataTables.js"></script>
+    <script>
+        window.addEventListener('load', function() {
+            // Seleccionamos un elemento HTML usando su ID
+            const html_scroll = document.getElementById('overflow-html');
+            const preloader = document.getElementById('preloader');
+
+            // Eliminamos un atributo del elemento
+            html_scroll.removeAttribute('id');
+            preloader.style.display = 'none';
+        });
+    </script>
     <script>
         const input_documentary = document.getElementById('input_documentary');
         const label_documentary = document.getElementById('label_documentary');

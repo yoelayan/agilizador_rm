@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" id="overflow-html">
     <!-- Required meta tags -->
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
@@ -27,4 +27,7 @@
     onload="initDataTable('<?= $datatable['prefix'] ?>table')"
 <?php endif ?>
 >
+<div id="preloader">
+    <div id="loader"></div>
+</div>
 <div class="container-scroller">

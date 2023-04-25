@@ -16,14 +16,25 @@
             </tr>
         </thead>
         <tbody>
-            <?php foreach ($datatable['data'] as $data): ?>
+            <?php foreach ($datatable['data'] as $key => $data): ?>
             <tr>
                 <?php foreach ($data as $item): ?>
                     <th style="">
                     <?php if (is_array($item)): ?>
-                        <a class="btn btn-primary btn-sm" href="<?= $item['url'].$data[$item['pk']] ?>" role="button">
-                            <?= ucfirst($item['button_name']) ?>
-                        </a>
+                            <?php if ($item['is_modal'] == true): ?>
+                                <button 
+                                onclick="edit_modal_form('<?= str_replace(' ', '', $item['url'].$data[$item['pk']]) ?>', '<?= $datatable['data'][$key][$item['pk']] ?>', '<?= $datatable['data'][$key]['id_acea'] ?>', '<?= $datatable['data'][$key]['name_aceaoptions'] ?>')" 
+                                class="btn btn-info btn-sm" 
+                                data-toggle="modal" 
+                                data-target="#<?= str_replace(' ', '', $item['url'].$data[$item['pk']]) ?>"
+                                >
+                                    <?= ucfirst($item['button_name']) ?>
+                                </button>
+                                <?php else: ?>
+                                <a class="btn btn-primary btn-sm" href="<?= $item['url'].$data[$item['pk']] ?>" role="button">
+                                    <?= ucfirst($item['button_name']) ?>
+                                </a>
+                                <?php endif ?>
                         <?php else: ?>
                             <?= ucfirst($item) ?>
                         <?php endif ?>

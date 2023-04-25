@@ -42,40 +42,40 @@
             <span style="font-weight: bold;">
                 • Estatus:
             </span>
-            <?= $my_property['status_name'] ?>
+            <?= $property_data['status_name'] ?>
         </p>
         <p>
             <span style="font-weight: bold;">
                 • Creado:
             </span>
-            <?= $my_property['created_at'] ?>
+            <?= $property_data['created_at'] ?>
         </p>
         <p>
             <span style="font-weight: bold;">
                 • Propietario:
             </span>
-            <?= $my_property['owner'] ?>
+            <?= $property_data['owner'] ?>
         </p>
         <p>
             <span style="font-weight: bold;">
                 • Correo del propietario:
             </span>
-            <?= $my_property['owner_mail'] ?>
+            <?= $property_data['owner_mail'] ?>
         </p>
         <p>
             <span style="font-weight: bold;">
                 • Teléfono del propietario:
             </span>
-            <?= $my_property['owner_phone'] ?>
+            <?= $property_data['owner_phone'] ?>
         </p>
         <p>
             <span style="font-weight: bold;">
                 • Caracter:
             </span>
-            <?= $my_property['area_type_name'] ?>
+            <?= $property_data['area_type_name'] ?>
         </p>
         <hr>
-        <?= view('shared/informative_memories/'.$my_property['housingtype_name'], ['data' => $my_property]); ?>
+        <?= view('shared/informative_memories/matriz', ['data' => $property_data]); ?>
     </div>
     
     
@@ -83,122 +83,124 @@
         <?= view('shared/form/form_edit'); ?>
     </div>
     <div id="tab02" class="tab-contents">
-        <h4 class="pt-4">
-            A.C.E.A.
-        </h4>
-        <p>
-            El presente gestor actua como un motor para la generación de memorias descriptivas, constituye en gran parte la información visible. 
-        </p>
-        <div class="container">
-        <form action="/properties/my_properties/views/<?= str_replace('RM00', '', $code_rm) ?>" method="post">
-            <?= csrf_field() ?>
-        <div class="pt-3">
-            <h3>Ambientes</h3>
-            <div class="row">
-            <?php foreach($aceas as $value): ?>
-                    <?php if($value['acea'] == 1): ?>
-                    <div class="col-md-4">
-                        <div class="form-check form-check-primary">
-                            <label class="form-check-label">
-                                <input 
-                                type="checkbox" 
-                                class="form-check-input" 
-                                value="<?= $value['id_acea'] ?>" 
-                                <?php if(in_array($value['id_acea'], explode(",", $my_property['environments']))): ?>
-                                checked=""
-                                <?php endif; ?>
-                                name="environments[]"> 
-                                <?= $value['name'] ?> <i class="input-helper"></i>
-                            </label>
+        <div class="shadow-sm mb-3 bg-white rounded px-3 pt-2 pb-1">
+            <h4 class="pt-4">
+                A.C.E.A.
+            </h4>
+            <p>
+                El presente gestor actua como un motor para la generación de memorias descriptivas, constituye en gran parte la información visible. 
+            </p>
+            <div class="container">
+            <form action="/properties/my_properties/views/<?= str_replace('RM00', '', $code_rm) ?>" method="post">
+                <?= csrf_field() ?>
+            <div class="pt-3">
+                <h3>Ambientes</h3>
+                <div class="row">
+                <?php foreach($aceas as $value): ?>
+                        <?php if($value['acea'] == 1): ?>
+                        <div class="col-md-4">
+                            <div class="form-check form-check-primary">
+                                <label class="form-check-label">
+                                    <input 
+                                    type="checkbox" 
+                                    class="form-check-input" 
+                                    value="<?= $value['id_acea'] ?>" 
+                                    <?php if(in_array($value['id_acea'], explode(",", $property_data['environments']))): ?>
+                                    checked=""
+                                    <?php endif; ?>
+                                    name="environments[]"> 
+                                    <?= $value['name'] ?> <i class="input-helper"></i>
+                                </label>
+                            </div>
                         </div>
-                    </div>
-                    <?php endif; ?>
-            <?php endforeach; ?>
+                        <?php endif; ?>
+                <?php endforeach; ?>
+                </div>
             </div>
-        </div>
-        <hr>
-        <div class="pt-3">
-            <h3>Comodidades</h3>
-            <div class="row">
-            <?php foreach($aceas as $value): ?>
-                    <?php if($value['acea'] == 4): ?>
-                    <div class="col-md-4">
-                        <div class="form-check form-check-primary">
-                            <label class="form-check-label">
-                                <input 
-                                type="checkbox" 
-                                class="form-check-input" 
-                                value="<?= $value['id_acea'] ?>"
-                                <?php if(in_array($value['id_acea'], explode(",", $my_property['amenities']))): ?>
-                                checked=""
-                                <?php endif; ?>
-                                name="amenities[]"> 
-                                <?= $value['name'] ?>  <i class="input-helper"></i>
-                            </label>
+            <hr>
+            <div class="pt-3">
+                <h3>Comodidades</h3>
+                <div class="row">
+                <?php foreach($aceas as $value): ?>
+                        <?php if($value['acea'] == 4): ?>
+                        <div class="col-md-4">
+                            <div class="form-check form-check-primary">
+                                <label class="form-check-label">
+                                    <input 
+                                    type="checkbox" 
+                                    class="form-check-input" 
+                                    value="<?= $value['id_acea'] ?>"
+                                    <?php if(in_array($value['id_acea'], explode(",", $property_data['amenities']))): ?>
+                                    checked=""
+                                    <?php endif; ?>
+                                    name="amenities[]"> 
+                                    <?= $value['name'] ?>  <i class="input-helper"></i>
+                                </label>
+                            </div>
                         </div>
-                    </div>
-                    <?php endif; ?>
-            <?php endforeach; ?>
+                        <?php endif; ?>
+                <?php endforeach; ?>
+                </div>
             </div>
-        </div>
-        <hr>
-        <div class="pt-3">
-            <h3>Exteriores</h3>
-            <div class="row">
-            <?php foreach($aceas as $value): ?>
-                    <?php if($value['acea'] == 5): ?>
-                    <div class="col-md-4">
-                        <div class="form-check form-check-primary">
-                            <label class="form-check-label">
-                                <input 
-                                type="checkbox" 
-                                class="form-check-input" 
-                                value="<?= $value['id_acea'] ?>" 
-                                <?php if(in_array($value['id_acea'], explode(",", $my_property['exterior']))): ?>
-                                checked=""
-                                <?php endif; ?>
-                                name="exterior[]"> 
-                                <?= $value['name'] ?>  <i class="input-helper"></i>
-                            </label>
+            <hr>
+            <div class="pt-3">
+                <h3>Exteriores</h3>
+                <div class="row">
+                <?php foreach($aceas as $value): ?>
+                        <?php if($value['acea'] == 5): ?>
+                        <div class="col-md-4">
+                            <div class="form-check form-check-primary">
+                                <label class="form-check-label">
+                                    <input 
+                                    type="checkbox" 
+                                    class="form-check-input" 
+                                    value="<?= $value['id_acea'] ?>" 
+                                    <?php if(in_array($value['id_acea'], explode(",", $property_data['exterior']))): ?>
+                                    checked=""
+                                    <?php endif; ?>
+                                    name="exterior[]"> 
+                                    <?= $value['name'] ?>  <i class="input-helper"></i>
+                                </label>
+                            </div>
                         </div>
-                    </div>
-                    <?php endif; ?>
-            <?php endforeach; ?>
+                        <?php endif; ?>
+                <?php endforeach; ?>
+                </div>
             </div>
-        </div>
-        <hr>
-        <div class="pt-3">
-            <h3>Adyacencias</h3>
-            <div class="row">
-            <?php foreach($aceas as $value): ?>
-                    <?php if($value['acea'] == 7): ?>
-                    <div class="col-md-4">
-                        <div class="form-check form-check-primary">
-                            <label class="form-check-label">
-                                <input 
-                                type="checkbox" 
-                                class="form-check-input" 
-                                value="<?= $value['id_acea'] ?>" 
-                                <?php if(in_array($value['id_acea'], explode(",", $my_property['adjacencies']))): ?>
-                                checked=""
-                                <?php endif; ?>
-                                name="adjacencies[]"> 
-                                <?= $value['name'] ?>  <i class="input-helper"></i>
-                            </label>
+            <hr>
+            <div class="pt-3">
+                <h3>Adyacencias</h3>
+                <div class="row">
+                <?php foreach($aceas as $value): ?>
+                        <?php if($value['acea'] == 7): ?>
+                        <div class="col-md-4">
+                            <div class="form-check form-check-primary">
+                                <label class="form-check-label">
+                                    <input 
+                                    type="checkbox" 
+                                    class="form-check-input" 
+                                    value="<?= $value['id_acea'] ?>" 
+                                    <?php if(in_array($value['id_acea'], explode(",", $property_data['adjacencies']))): ?>
+                                    checked=""
+                                    <?php endif; ?>
+                                    name="adjacencies[]"> 
+                                    <?= $value['name'] ?>  <i class="input-helper"></i>
+                                </label>
+                            </div>
                         </div>
-                    </div>
-                    <?php endif; ?>
-            <?php endforeach; ?>
+                        <?php endif; ?>
+                <?php endforeach; ?>
+                </div>
             </div>
+            <hr>
+            <div class="pt-3 pb-2">
+                <button type="submit" class="btn btn-success btn-sm w-100">
+                    Guardar
+                </button>
+            </div>
+        </form>
         </div>
-        <hr>
-        <div class="pt-3 pb-2">
-            <button type="submit" class="btn btn-success btn-sm w-100">
-                Guardar
-            </button>
         </div>
-    </form>
-    </div>
     </div>
     <div id="tab03" class="tab-contents">
     <h4 class="pt-4">
@@ -244,7 +246,7 @@
                         </div>
                         <div class="col-md-6 p-0">
                             <?= view('shared/destroy_material/destructor_file', [
-                                'url_post_destroy' => '/properties/my_properties/views/'.$my_property['id_properties'],
+                                'url_post_destroy' => '/properties/my_properties/views/'.$property_data['id_properties'],
                                 'directory_file_destroy' => '/properties/'.$code_rm.'/documentary/'.$documentary
                             ]); ?>
                         </div>
@@ -297,7 +299,7 @@
                         </div>
                         <div class="col-md-6 p-0">
                             <?= view('shared/destroy_material/destructor_file', [
-                                'url_post_destroy' => '/properties/my_properties/views/'.$my_property['id_properties'],
+                                'url_post_destroy' => '/properties/my_properties/views/'.$property_data['id_properties'],
                                 'directory_file_destroy' => '/properties/'.$code_rm.'/graphic/'.$graphic
                             ]); ?>
                         </div>

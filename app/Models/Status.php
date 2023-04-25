@@ -4,10 +4,10 @@ namespace App\Models;
 
 use CodeIgniter\Model;
 
-class Municipality extends Model
+class Status extends Model
 {
     protected $DBGroup          = 'default';
-    protected $table            = 'municipality';
+    protected $table            = 'status';
     protected $primaryKey       = 'id';
     protected $useAutoIncrement = true;
     protected $insertID         = 0;
@@ -15,8 +15,7 @@ class Municipality extends Model
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
     protected $allowedFields    = [
-        'name',
-        'id_fk_state'
+        'name'
     ];
 
     // Dates
